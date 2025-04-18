@@ -8,7 +8,7 @@
 ## Demo
 
 <div align="center">
-  <video controls src="https://github.com/user-attachments/assets/30ccbe82-7933-4031-8578-b5248435d317">
+  <video controls src="https://github.com/user-attachments/assets/a89a0d70-a573-4d61-91bd-4f09a0b6ce2c">
   </video>
 </div>
 
@@ -28,6 +28,10 @@
 ```bash
 git clone git@github.com:aigc3d/LAM_Audio2Expression.git
 cd LAM_Audio2Expression
+# Create conda environment (currently only supports Python 3.10)
+conda create -n lam_a2e python=3.10
+# Activate the conda environment
+conda activate lam_a2e
 # Install with Cuda 12.1
 sh  ./scripts/install/install_cu121.sh
 # Or Install with Cuda 11.8
@@ -44,7 +48,6 @@ huggingface-cli download 3DAIGC/LAM_audio2exp --local-dir ./
 tar -xzvf LAM_audio2exp_assets.tar && rm -f LAM_audio2exp_assets.tar
 tar -xzvf LAM_audio2exp_streaming.tar && rm -f LAM_audio2exp_streaming.tar
 
-
 # Or OSS Download (In case of HuggingFace download failing)
 # Download Assets
 wget https://virutalbuy-public.oss-cn-hangzhou.aliyuncs.com/share/aigc3d/data/LAM/LAM_audio2exp_assets.tar
@@ -52,12 +55,15 @@ tar -xzvf LAM_audio2exp_assets.tar && rm -f LAM_audio2exp_assets.tar
 # Download Model Weights
 wget https://virutalbuy-public.oss-cn-hangzhou.aliyuncs.com/share/aigc3d/data/LAM/LAM_audio2exp_streaming.tar
 tar -xzvf LAM_audio2exp_streaming.tar && rm -f LAM_audio2exp_streaming.tar
+
+Or Modelscope Download
+git clone https://www.modelscope.cn/Damo_XR_Lab/LAM_audio2exp.git ./modelscope_download
 ```
 
 
 ### Quick Start Guide
 #### Using <a href="https://github.com/gradio-app/gradio">Gradio</a> Interface: 
-We provide a simple Gradio demo with **WebGLGL Render**, and you can get rendering results by uploading audio in seconds.
+We provide a simple Gradio demo with **WebGL Render**, and you can get rendering results by uploading audio in seconds.
 
 <img src="./assets/images/snapshot.png" alt="teaser" width="1000"/>
 

@@ -53,8 +53,13 @@ def get_image_base64(path):
     return f'data:image/png;base64,{encoded_string}'
 
 
-def doRender():
-    print('H5 rendering ....')
+def do_render():
+    print('WebGL rendering ....')
+    return
+
+def audio_loading():
+    print("Audio loading ....")
+    return "None"
 
 def parse_configs():
     parser = argparse.ArgumentParser()
@@ -139,7 +144,7 @@ def demo_lam_audio2exp(infer, cfg):
 
         create_zip_archive(output_zip='./assets/arkitWithBSData.zip', base_dir=os.path.join("./assets/sample_lam", base_id))
 
-        return
+        return 'gradio_api/file='+audio_params
 
     with gr.Blocks(analytics_enabled=False) as demo:
         logo_url = './assets/images/logo.jpeg'
@@ -224,6 +229,8 @@ def demo_lam_audio2exp(infer, cfg):
                 gs = gaussian_render(width=380, height=680, assets=assetPrefix + 'arkitWithBSData.zip')
 
         working_dir = gr.State()
+        selected_audio = gr.Textbox(visible=False)
+
         submit.click(
             fn=assert_input_image,
             inputs=[input_image],
@@ -235,11 +242,16 @@ def demo_lam_audio2exp(infer, cfg):
         ).success(
             fn=core_fn,
             inputs=[input_image, audio_input,
-                    working_dir],  # video_params refer to smpl dir
-            outputs=[],
+                    working_dir],
+            outputs=[selected_audio],
             queue=False,
         ).success(
-            doRender, js='''() => window.start()'''
+            fn=audio_loading,
+            outputs=[selected_audio],
+            js='''(output_component) => window.loadAudio(output_component)'''
+        ).success(
+            fn=do_render(),
+            js='''() => window.start()'''
         )
 
         demo.queue()
