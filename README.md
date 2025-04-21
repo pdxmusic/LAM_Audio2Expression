@@ -68,8 +68,12 @@ git clone https://www.modelscope.cn/Damo_XR_Lab/LAM_audio2exp.git ./modelscope_d
 #### Using <a href="https://github.com/gradio-app/gradio">Gradio</a> Interface: 
 We provide a simple Gradio demo with **WebGL Render**, and you can get rendering results by uploading audio in seconds.
 
-<img src="./assets/images/snapshot.png" alt="teaser" width="1000"/>
-
+[//]: # (<img src="./assets/images/snapshot.png" alt="teaser" width="1000"/>)
+<div align="center">
+  <video controls src="https://github.com/user-attachments/assets/2bb4e74f-cd96-4c50-9833-fae10b1ead4c
+">
+  </video>
+</div>
 
 
 ```
