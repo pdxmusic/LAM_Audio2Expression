@@ -133,9 +133,19 @@ def create_zip_archive(output_zip='assets/arkitWithBSData.zip', base_dir=""):
 
 
 def demo_lam_audio2exp(infer, cfg):
-    def core_fn(image_path: str, audio_params, working_dir):
+    def core_fn(image_path: str, audio_params, working_dir, input_zip_textbox):
 
-        base_id = os.path.basename(image_path).split(".")[0]
+        if(os.path.exists(input_zip_textbox)):
+            base_id = os.path.basename(input_zip_textbox).split(".")[0]
+            output_dir = os.path.join('assets', 'sample_lam', base_id)
+            # unzip_dir
+            if (not os.path.exists(os.path.join(output_dir, 'arkitWithBSData'))):
+                run_command = 'unzip -d '+output_dir+' '+input_zip_textbox
+                os.system(run_command)
+                rename_command = 'mv '+os.path.join(output_dir,base_id)+' '+os.path.join(output_dir,'arkitWithBSData')
+                os.system(rename_command)
+        else:
+            base_id = os.path.basename(image_path).split(".")[0]
 
         # set input audio
         cfg.audio_input = audio_params
@@ -177,7 +187,8 @@ def demo_lam_audio2exp(infer, cfg):
                                                    width=270,
                                                    sources='upload',
                                                    type='filepath',  # 'numpy',
-                                                   elem_id='content_image')
+                                                   elem_id='content_image',
+                                                   interactive=False)
                 # EXAMPLES
                 with gr.Row():
                     examples = [
@@ -222,6 +233,12 @@ def demo_lam_audio2exp(infer, cfg):
         # SETTING
         with gr.Row():
             with gr.Column(variant='panel', scale=1):
+                input_zip_textbox = gr.Textbox(
+                    label="Input Local Path to LAM-Generated ZIP File",
+                    interactive=True,
+                    placeholder="Input Local Path to LAM-Generated ZIP File",
+                    visible=True
+                )
                 submit = gr.Button('Generate',
                                    elem_id='lam_generate',
                                    variant='primary')
@@ -246,7 +263,7 @@ def demo_lam_audio2exp(infer, cfg):
         ).success(
             fn=core_fn,
             inputs=[input_image, audio_input,
-                    working_dir],
+                    working_dir, input_zip_textbox],
             outputs=[selected_audio, selected_render_file],
             queue=False,
         ).success(

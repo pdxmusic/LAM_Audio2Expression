@@ -21,6 +21,7 @@ To enable ARKit-driven animation of the LAM model, we adapted ARKit blendshapes 
 
 ## 📢 News
 
+**[May 21, 2025]** We have released a [Avatar Export Feature](https://www.modelscope.cn/studios/Damo_XR_Lab/LAM_Large_Avatar_Model), enabling users to generate facial expressions from audio using any [LAM-generated](https://github.com/aigc3d/LAM) 3D digital humans.  <br>
 **[April 21, 2025]** We have released the [ModelScope](https://www.modelscope.cn/studios/Damo_XR_Lab/LAM-A2E) Space ! <br>
 **[April 21, 2025]** We have released the WebGL Interactive Chatting Avatar SDK on [OpenAvatarChat](https://github.com/HumanAIGC-Engineering/OpenAvatarChat) (including LLM, ASR, TTS, Avatar), with which you can freely chat with our generated 3D Digital Human ! 🔥 <br>
 
