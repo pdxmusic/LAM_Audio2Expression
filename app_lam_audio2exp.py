@@ -37,7 +37,9 @@ except:
 h5_rendering = True
 
 
-def assert_input_image(input_image):
+def assert_input_image(input_image,input_zip_textbox):
+    if(os.path.exists(input_zip_textbox)):
+        return
     if input_image is None:
         raise gr.Error('No image selected or uploaded!')
 
@@ -254,7 +256,7 @@ def demo_lam_audio2exp(infer, cfg):
 
         submit.click(
             fn=assert_input_image,
-            inputs=[input_image],
+            inputs=[input_image,input_zip_textbox],
             queue=False,
         ).success(
             fn=prepare_working_dir,
