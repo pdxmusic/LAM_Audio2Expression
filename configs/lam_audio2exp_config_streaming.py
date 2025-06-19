@@ -1,6 +1,6 @@
 weight = 'pretrained_models/lam_audio2exp_streaming.tar'  # path to model weight
 ex_vol = True # extract
-audio_input = './assets/sample_audio/BarackObama.wav'
+audio_input = './assets/sample_audio/BarackObama_english.wav'
 save_json_path = 'bsData.json'
 
 audio_sr = 16000

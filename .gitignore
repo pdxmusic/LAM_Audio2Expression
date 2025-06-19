@@ -14,5 +14,6 @@ outputs/
 */.DS_Store
 TEMP/
 pretrained/
+pretrained_models/
 **/*.out
 Dockerfile

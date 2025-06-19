@@ -19,7 +19,7 @@ import base64
 import gradio as gr
 import argparse
 from omegaconf import OmegaConf
-from gradio_gaussian_render import gaussian_render
+# from gradio_gaussian_render import gaussian_render  # Temporarily commented out
 
 from engines.defaults import (
     default_argument_parser,
@@ -246,9 +246,10 @@ def demo_lam_audio2exp(infer, cfg):
                                    variant='primary')
 
         if h5_rendering:
-            gr.set_static_paths(Path.cwd().absolute() / "assets/")
+            # gr.set_static_paths(Path.cwd().absolute() / "assets/")  # Not available in Gradio 3.44.3
             with gr.Row():
-                gs = gaussian_render(width=380, height=680)
+                # gs = gaussian_render(width=380, height=680)  # Temporarily commented out
+                pass
 
         working_dir = gr.State()
         selected_audio = gr.Textbox(visible=False)
@@ -271,11 +272,11 @@ def demo_lam_audio2exp(infer, cfg):
         ).success(
             fn=audio_loading,
             outputs=[selected_audio],
-            js='''(output_component) => window.loadAudio(output_component)'''
+            # js='''(output_component) => window.loadAudio(output_component)'''  # JS not supported in this Gradio version
         ).success(
             fn=do_render(),
             outputs=[selected_render_file],
-            js='''(selected_render_file) => window.start(selected_render_file)'''
+            # js='''(selected_render_file) => window.start(selected_render_file)'''  # JS not supported in this Gradio version
         )
 
         demo.queue()

@@ -1,0 +1,4 @@
+conda activate lam_a2e
+python simple_audio_to_blendshapes.py input_audio.wav output_blendshapes.json
+
+python simple_audio_to_blendshapes.py assets/sample_audio/BarackObama_english.wav obama_blendshapes.json
